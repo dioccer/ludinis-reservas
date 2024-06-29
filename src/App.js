@@ -1,25 +1,16 @@
-import logo from './logo.svg';
-import './App.css';
+// App.js (o cualquier componente principal de tu aplicación)
+import React from 'react';
+import { GoogleOAuthProvider } from '@react-oauth/google';
+import Home from './Home'; // Suponiendo que aquí está tu componente principal
 
-function App() {
+const App = () => {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <GoogleOAuthProvider clientId="1068434512211-u2nsrcigpghor5svvs81c4km77h0qtqa.apps.googleusercontent.com">
+      <div className="App">
+        <Home />
+      </div>
+    </GoogleOAuthProvider>
   );
-}
+};
 
 export default App;

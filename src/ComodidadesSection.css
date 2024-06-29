@@ -1,0 +1,150 @@
+.comments-section {
+    width: 320px; /* Reducido el ancho para ajuste más apretado */
+    position: relative; /* Mantenemos la posición relativa */
+    top: -5%; /* Distancia desde la parte superior */
+    left: calc(100% - 320px); /* Ajusta la posición desde el borde derecho */
+    background-color: #333; /* Fondo negro para combinar con otras secciones */
+    padding: 5px; /* Reducido el padding para achicar aún más */
+    border-radius: 10px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3); /* Sombra más sutil */
+    font-family: 'Arial', sans-serif; /* Fuente según preferencia */
+    border: 1px solid #555; /* Borde delgado con un tono más oscuro */
+    color: #fff; /* Texto en color blanco para contrastar */
+}
+
+.comments-section h2 {
+    font-size: 1.6rem; /* Reducido el tamaño del título */
+    font-weight: bold; /* Negrita para el título */
+    margin-bottom: 10px; /* Espacio abajo del título */
+    color: #ffd700; /* Color dorado para el título */
+    text-align: center; /* Centra el título */
+}
+
+.comment {
+    margin-top: 10px; /* Espacio arriba de cada comentario */
+    border-top: 1px solid #555; /* Borde superior del primer comentario */
+    padding-top: 10px; /* Espaciado superior */
+}
+
+.comment p {
+    margin: 8px 0; /* Espaciado entre párrafos dentro del comentario */
+    line-height: 1.5; /* Espacio entre líneas */
+    color: #ccc; /* Color de texto gris claro */
+}
+
+.comment .author {
+    font-weight: bold; /* Negrita para el autor del comentario */
+    color: #ffd700; /* Color dorado para el autor */
+}
+
+.comment .date {
+    font-size: 0.8rem; /* Reducido el tamaño de la fecha */
+    color: #999; /* Color de texto gris claro */
+    margin-top: 4px; /* Espacio superior de la fecha */
+}
+
+/* Estilos adicionales para las comodidades */
+.comodidades-section .comodidades {
+    position: absolute;
+    margin-top: -320px;
+    left: 700px; /* Centra horizontalmente */
+    transform: translate(-50%, -50%);
+    z-index: 0;
+    transition: opacity 0.3s ease-in-out; /* Transición suave */
+}
+
+.comodidades-section:hover .comodidades {
+    opacity: 1; /* Muestra las comodidades al hacer hover */
+}
+
+.comodidades-section .single-comodidad {
+    width: 300px;
+    background-color: #555;
+    color: #fff; /* Color de texto blanco */
+    padding: 30px;
+    margin-bottom: 5px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    cursor: pointer; /* Cambia el cursor al pasar por encima */
+    transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out; /* Transición suave para el color de fondo y el texto */
+}
+
+.comodidades-section .single-comodidad:hover {
+    background-color: #f58080; /* Cambia el color de fondo al hacer hover */
+    color: #fff; /* Ajusta el color de texto en hover para asegurar la visibilidad */
+}
+
+.consultas-h3 {
+    position: relative;
+    z-index: 1;
+    bottom: 520px;
+    text-align: center;
+    font-size: 28px;
+    color: #f1f1f1;
+    margin-top: 40px;
+    font-family: 'Arial', sans-serif;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    padding: 10px;
+    background-color: #4d4d4d;
+    border: 2px solid #ccc;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+    right: 20px;
+}
+
+.consultas-h3:hover {
+    transform: translateY(-5px); /* Levanta ligeramente al hacer hover */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Sombra más pronunciada al hacer hover */
+}
+
+/* Estilos para las estrellas */
+.ratings {
+    display: flex;
+    justify-content: center;
+    margin-top: 10px;
+    flex-direction: row-reverse;
+    top: 35px;
+    z-index: 1;
+}
+
+.star {
+    font-size: 1.5rem;
+    color: #ddd; /* Color de las estrellas no seleccionadas */
+    cursor: pointer;
+    transition: color 0.2s;
+    margin: 0 2px;
+}
+
+.star.selected {
+    color: #ffd700; /* Color de las estrellas seleccionadas */
+}
+
+.star:hover,
+.star:hover ~ .star {
+    color: #ffdf00; /* Color de las estrellas al pasar el mouse por encima */
+}
+.reserve-btn {
+    background-color: #4CAF50; /* Color de fondo */
+    color: white; /* Color del texto */
+    padding: 10px 20px; /* Espaciado interno */
+    border: none; /* Sin borde */
+    cursor: pointer; /* Cambiar cursor al pasar */
+    border-radius: 4px; /* Borde redondeado */
+    font-size: 16px; /* Tamaño de la fuente */
+}
+
+.reserve-btn:hover {
+    background-color: #45a049; /* Color de fondo al pasar */
+}
+.single-comodidad {
+    cursor: pointer;
+    /* Otros estilos */
+}
+
+.single-comodidad.selected {
+    background-color: #f58080; /* Cambia el color de fondo para marcarlo como seleccionado */
+    /* Otros estilos para indicar que está seleccionado */
+}

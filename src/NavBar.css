@@ -1,0 +1,155 @@
+/* NavBar.css */
+
+.navbar {
+    background: #333;
+    height: 80px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.2rem;
+    position: fixed;
+    width: 100%;
+    top: 0;
+    z-index: 10;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.nav-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 80px;
+    width: 100%;
+    max-width: 1500px;
+    padding: 0 24px;
+}
+
+.nav-logo {
+    color: #fff;
+    text-decoration: none;
+    font-size: 2rem;
+    display: flex;
+    align-items: center;
+    font-weight: bold;
+}
+
+.nav-logo span {
+    color: #01bf71;
+}
+
+.nav-menu {
+    display: flex;
+    align-items: center;
+    list-style: none;
+    margin-right: 0;
+}
+
+.nav-item {
+    height: 80px;
+    cursor: pointer;
+}
+
+.nav-links {
+    color: #fff;
+    text-decoration: none;
+    padding: 0 1rem;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    transition: border-bottom 0.3s ease;
+    font-family: 'Arial', sans-serif;
+    font-weight: 600; /* Más negrita para un aspecto más formal */
+    text-transform: uppercase; /* Mayúsculas para un estilo más formal */
+}
+
+.nav-links:hover {
+    border-bottom: 3px solid #01bf71;
+}
+
+.nav-search {
+    display: flex;
+    align-items: center;
+    margin-right: 24px;
+    position: relative; /* Añadir posición relativa para alinear el ícono dentro del contenedor */
+}
+
+.search-icon {
+    color: #fff;
+    cursor: pointer;
+    font-size: 1.5rem;
+    margin-right: 8px;
+}
+
+.search-input {
+    border: none;
+    background-color: transparent;
+    color: #fff;
+    padding: 8px 12px;
+    font-size: 1rem;
+    border-bottom: 1px solid #fff;
+    transition: border-bottom 0.3s ease;
+    width: 150px; /* Ancho del campo de búsqueda */
+}
+
+.search-input:focus {
+    outline: none;
+    border-bottom: 1px solid #01bf71;
+}
+
+.search-icon svg {
+    width: 20px; /* Tamaño del ícono de búsqueda */
+    fill: #fff; /* Color del ícono de búsqueda */
+}
+
+.dropdown {
+    position: relative;
+    display: inline-block;
+    height: 100%; /* Ajuste para que ocupe toda la altura del navbar */
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #333;
+    min-width: 200px;
+    z-index: 1;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    border-radius: 5px;
+    padding: 10px;
+}
+
+.dropdown-content p {
+    color: #fff;
+    font-size: 14px;
+    line-height: 1.6;
+}
+
+.dropdown-content p:first-of-type {
+    margin-top: 0;
+}
+
+.dropdown-content a {
+    color: #fff;
+    text-decoration: none;
+    display: block;
+    padding: 8px 16px;
+}
+
+.dropdown-content a:hover {
+    background-color: #555;
+    border-radius: 5px;
+}
+
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+
+/* Ajustar estilos para que "Contacto" tenga la misma apariencia que las otras opciones */
+.nav-links.contact {
+    color: #fff;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    transition: none;
+    cursor: default; /* Cambiar el cursor a predeterminado */
+}
