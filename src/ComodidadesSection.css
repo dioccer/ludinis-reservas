@@ -141,10 +141,39 @@
 }
 .single-comodidad {
     cursor: pointer;
+    /* Estilos iniciales del elemento */
+    background-color: #fff; /* Color de fondo inicial */
     /* Otros estilos */
 }
 
 .single-comodidad.selected {
-    background-color: #f58080; /* Cambia el color de fondo para marcarlo como seleccionado */
+    background-color: #f58080; /* Fondo rojo cuando está seleccionado */
     /* Otros estilos para indicar que está seleccionado */
+}
+
+
+/* Estilo de hover para cuando está seleccionado */
+.single-comodidad.selected:hover {
+    /* Mantenemos el fondo rojo cuando está seleccionado y se hace hover */
+    background-color: #f58080;
+    /* Otros estilos de hover cuando está seleccionado */
+}
+.single-comodidad {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.add-btn {
+    background-color: #007bff;
+    border: none;
+    color: white;
+    padding: 5px 10px;
+    cursor: pointer;
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+.add-btn:hover {
+    background-color: #0056b3;
 }

@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import './ComodidadesSection.css';
-import emailjs from 'emailjs-com'; //Importa emailjs
+import emailjs from 'emailjs-com'; // Importa emailjs
 import axios from 'axios';
 
 const ComodidadesSection = ({ id, salonName, handleOpenGallery }) => {
@@ -10,8 +10,11 @@ const ComodidadesSection = ({ id, salonName, handleOpenGallery }) => {
         name: '',
         email: '',
         time: '',
+        date: '', // Añadir la propiedad date aquí
         message: ''
     });
+    const [isPopupOpen, setIsPopupOpen] = useState(false); // Estado para controlar la visibilidad del popup
+    const [currentImage, setCurrentImage] = useState(''); // Estado para la imagen actual
 
     const comentariosPorSalon = {
         Lafayette: [
@@ -63,8 +66,36 @@ const ComodidadesSection = ({ id, salonName, handleOpenGallery }) => {
         ]
     };
 
+    const imagenesPorComodidad = {
+        Lafayette: {
+            "Servicio de catering": ["https://www.sleventos.com.ar/img/productos/1.jpg"],
+            "Pista de baile": ["https://i.pinimg.com/originals/07/90/e0/0790e0bff7774831707e6bfa163dfa45.jpg"],
+            "Decoración personalizada": ["https://www.dreamybackdrop.com/cdn/shop/products/GlitterPinkbirthdaypartydecorationforphotographywomen_800x.jpg?v=1603346823"],
+            "Sistema de sonido profesional": ["https://equipamientodigital.com/img/cms/sonido-aula-digital.png"]
+        },
+        Vicenzo: {
+            "Sistema de iluminación profesional": ["https://es.mjledlighting.com/wp-content/uploads/2020/02/1581738667-mmexport1508395046633.jpg"],
+            "Barra de cócteles": ["https://eterclub.com.ar/wp-content/uploads/2020/07/barra_5582.jpg"],
+            "Área de lounge": ["https://www.sirchandler.com.ar/wp-content/uploads/2023/07/salon-vip-quito-ecuador-1024.jpg"],
+            "Zona VIP": ["https://www.sirchandler.com.ar/wp-content/uploads/2023/01/vip-aeroparque-7064.jpg"]
+        },
+        Pacara_Center: {
+            "Salas de reuniones equipadas": ["https://thumbs.dreamstime.com/b/luxury-interior-design-lounge-area-hotel-expensive-upholstered-furniture-tables-floors-rooms-d-render-79491146.jpg"],
+            "Servicio de coffee break": ["https://api-static.eventsip.com/portals/files/18605/18605.jpg"],
+            "Acceso a tecnología de vanguardia": ["https://cdn0.casamientos.com.ar/vendor/0551/3_2/960/jpg/img-2347_7_90551-157193128895785.jpeg"],
+            "Soporte técnico especializado": ["https://www.led-display-manufacturer.com/wp-content/uploads/2023/04/Rental-LED-Display-MaxiRent-series.jpg"]
+        },
+        Las_Marias: {
+            "Espacio al aire libre": ["https://landbit.me/wp-content/uploads/2022/12/mendoza-casamiento-al-aire-libre-en-mendoza-800x600.jpg"],
+            "Jardines paisajísticos": ["https://www.hola.com/horizon/original_aspect_ratio/f2f729c58f2b-arquitectura-jardin-hola-decoracion-09-a.jpg"],
+            "Vistas panorámicas": ["https://latitur.com/uploads/media/cactus_product_tours_by_locals/6166.turismodeltucuman@gmail.com/10904/thumb_10904_cactus_product_tours_by_locals_large.jpeg"],
+            "Zona de juegos infantiles": ["https://suelosport.com/wp-content/uploads/2022/12/parques1-800x600.jpg"]
+        }
+    };
+
     const comentarios = comentariosPorSalon[salonName] || [];
     const comodidades = comodidadesPorSalon[salonName] || [];
+    const imagenes = imagenesPorComodidad[salonName] || {};
 
     const handleStarClick = (star) => {
         setRatings(star === ratings ? 0 : star);
@@ -78,6 +109,17 @@ const ComodidadesSection = ({ id, salonName, handleOpenGallery }) => {
         );
     };
 
+    const handleAddClick = (e, comodidad) => {
+        e.stopPropagation(); // Evita que el clic en el botón se propague al contenedor padre
+        setIsPopupOpen(true);
+        setCurrentImage(imagenes[comodidad]); // Setea la imagen actual
+    };
+
+    const handleClosePopup = () => {
+        setIsPopupOpen(false);
+        setCurrentImage('');
+    };
+
     const handleInputChange = (e) => {
         const { name, value } = e.target;
         setFormData({
@@ -88,7 +130,7 @@ const ComodidadesSection = ({ id, salonName, handleOpenGallery }) => {
 
     const handleFormSubmit = async (e) => {
         e.preventDefault();
-        const { name, email, time, message } = formData;
+        const { name, email, time, date, message } = formData;
         const selectedItems = selectedComodidades;
 
         try {
@@ -96,6 +138,7 @@ const ComodidadesSection = ({ id, salonName, handleOpenGallery }) => {
                 from_name: name,
                 from_email: email,
                 time: time,
+                date: date, // Añadir la fecha aquí
                 message: message,
                 comodidades: selectedItems,
                 salonName: salonName // Agrega el nombre del salón aquí
@@ -113,12 +156,13 @@ const ComodidadesSection = ({ id, salonName, handleOpenGallery }) => {
             console.error('Error al enviar el correo:', error);
             alert('Hubo un error al enviar el correo. Por favor, inténtalo de nuevo.');
         }
-        
+
         try {
             const response = await axios.post('http://localhost:5000/submit-form', {
                 name,
                 email,
                 time,
+                date, // Añadir la fecha aquí
                 message,
                 selectedItems,
             });
@@ -160,7 +204,6 @@ const ComodidadesSection = ({ id, salonName, handleOpenGallery }) => {
                 </div>
             </div>
             <div className="comodidades-section">
-
                 <div className="comodidades">
                     {comodidades.slice(0, 4).map((comodidad, index) => (
                         <div
@@ -169,10 +212,21 @@ const ComodidadesSection = ({ id, salonName, handleOpenGallery }) => {
                             onClick={() => handleComodidadClick(comodidad)}
                         >
                             <p>{comodidad}</p>
+                            <button className="add-btn" onClick={(e) => handleAddClick(e, comodidad)}>Ver Imágen</button>
                         </div>
                     ))}
                 </div>
             </div>
+
+            {isPopupOpen && (
+                <div className="popup-overlay">
+                    <div className="popup">
+                        <button className="close-btn" onClick={handleClosePopup}>X</button>
+                        <img src={currentImage} alt="Comodidad" />
+                    </div>
+                </div>
+            )}
+
             <form className="contact-form" onSubmit={handleFormSubmit}>
                 <input
                     type="text"
@@ -198,6 +252,14 @@ const ComodidadesSection = ({ id, salonName, handleOpenGallery }) => {
                     placeholder="Horario"
                     required
                 />
+                <input
+                    type="date"
+                    name="date"
+                    value={formData.date}
+                    onChange={handleInputChange}
+                    placeholder="Fecha"
+                    required
+                />
                 <textarea
                     name="message"
                     value={formData.message}
@@ -212,4 +274,3 @@ const ComodidadesSection = ({ id, salonName, handleOpenGallery }) => {
 };
 
 export default ComodidadesSection;
-

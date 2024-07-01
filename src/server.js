@@ -24,6 +24,7 @@ const formDataSchema = new mongoose.Schema({
     name: String,
     email: String,
     time: String,
+    date: String,
     message: String,
     selectedItems: [String],
 });
@@ -32,8 +33,8 @@ const FormData = mongoose.model('FormData', formDataSchema);
 
 // Ruta para guardar datos del formulario
 app.post('/submit-form', async (req, res) => {
-    const { name, email, time, message, selectedItems } = req.body;
-    const newFormData = new FormData({ name, email, time, message, selectedItems });
+    const { name, email, time, date, message, selectedItems } = req.body;
+    const newFormData = new FormData({ name, email, time, date, message, selectedItems });
 
     try {
         await newFormData.save();
